@@ -81,7 +81,7 @@ Restaurant Management/
 └── README.md
 ```
 
-## ⚙️ Installation
+##  Installation
 
 ### 1. Clone the repository
 
@@ -114,7 +114,7 @@ The backend will run on:
 http://localhost:5000
 ```
 
-## 🗄️ Database
+## Database
 
 This project uses **SQLite** for storing application data.
 
@@ -124,7 +124,7 @@ The database connection is configured in:
 backend/database.js
 ```
 
-## 🔐 Authentication
+##  Authentication
 
 The application includes user authentication and protected routes.
 
@@ -136,25 +136,7 @@ backend/routes/authRoutes.js
 backend/middleware/auth.js
 ```
 
-## 📸 Screenshots
-
-### Login
-
-![Login](login/screen.png)
-
-### Menu
-
-![Menu](menu/screen.png)
-
-### Orders
-
-![Orders](your_orders/screen.png)
-
-### Restaurant Tables
-
-![Restaurant Tables](Artisan_tables/screen.png)
-
-## 🚀 Future Improvements
+##  Future Improvements
 
 * Online payment integration
 * Admin dashboard
@@ -164,7 +146,7 @@ backend/middleware/auth.js
 * Food search and filtering
 * Deployment to a cloud platform
 
-## 👨‍💻 Author
+##  Author
 
 **Ninganna Pundalik Shirashyad**
 
