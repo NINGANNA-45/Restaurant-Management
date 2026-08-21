@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artisan Table | Product Catalog</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdbd1",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ede1c9",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#d1c5ae",
+                        "on-tertiary-container": "#fffbff",
+                        "outline": "#89726c",
+                        "on-background": "#1b1c1a",
+                        "on-primary-fixed": "#3b0900",
+                        "primary": "#994127",
+                        "inverse-on-surface": "#f2f0ed",
+                        "on-surface-variant": "#56423d",
+                        "surface-tint": "#9c4329",
+                        "surface-variant": "#e4e2de",
+                        "secondary-fixed": "#ccead6",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "inverse-primary": "#ffb5a0",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#dcc1ba",
+                        "background": "#fbf9f5",
+                        "on-error-container": "#93000a",
+                        "surface": "#fbf9f5",
+                        "tertiary-container": "#7d7460",
+                        "secondary-fixed-dim": "#b0cdbb",
+                        "secondary": "#496455",
+                        "surface-container": "#efeeea",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#7d2c14",
+                        "surface-container-highest": "#e4e2de",
+                        "surface-container-high": "#eae8e4",
+                        "on-surface": "#1b1c1a",
+                        "on-secondary-fixed": "#062014",
+                        "secondary-container": "#ccead6",
+                        "on-secondary-fixed-variant": "#324c3e",
+                        "primary-container": "#b8583d",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#30312e",
+                        "surface-dim": "#dbdad6",
+                        "on-secondary-container": "#4f6a5b",
+                        "tertiary": "#635b48",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed-variant": "#4d4634",
+                        "surface-bright": "#fbf9f5",
+                        "surface-container-low": "#f5f3ef",
+                        "on-tertiary-fixed": "#211b0c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "margin-desktop": "48px",
+                        "sm": "12px",
+                        "lg": "40px",
+                        "base": "8px",
+                        "xl": "64px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Newsreader"],
+                        "label-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "display-lg": ["Newsreader"],
+                        "headline-md": ["Newsreader"],
+                        "headline-lg-mobile": ["Newsreader"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            position: relative;
+        }
+        .active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: currentColor;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dcc1ba; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="fixed left-0 top-0 hidden md:flex flex-col h-full border-r border-outline-variant dark:border-outline bg-surface-container-low dark:bg-surface-container-lowest w-64 z-50 shadow-sm transition-all">
+<div class="px-md py-lg">
+<h1 class="font-headline-md text-headline-md text-primary">Kitchen Station</h1>
+</div>
+<nav class="flex-1 px-sm space-y-xs">
+<!-- Active Tab: Catalog -->
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-full px-md py-sm transition-all hover:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Menu</span>
+</a>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-md w-full sticky top-0 z-40 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">restaurant</span>
+<span class="font-headline-lg text-headline-lg text-primary">Artisan Table</span>
+</div>
+<div class="hidden md:flex gap-gutter">
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary active-tab" href="#">Menu</a>
+<a id="logoutBtn" class="font-label-md text-label-md text-on-surface-variant opacity-80 hover:text-primary transition-colors" href="#">Log Out</a>
+</div>
+<div class="h-10 w-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZlBSL3BnFNpCEJIig7t8Jyf7FIFG2pR9hU3mbtkQwmDn-vCM6MMskYK9bjD_4cz59MFXNjkrfhp3YktS-hV7K_ymKTAEudpagqP4EXkyfpURG7EuH8FDaT5qb43aLy1oCgOztbIHz6cG_YD1KRVRkPtMdjwOMiy2UTOXXsKXjJZ0xlbUD4QVLYy6ZrEDvX0UNXNepx9NwWxNvecF6wN1q5m14Xt626LjSThE0LoO99elbU_t27u6E-SVDhdNZ87rz20nFS54kbxbb"/>
+</div>
+</div>
+</header>
+<!-- Category Tabs -->
+<div class="px-margin-mobile md:px-margin-desktop py-md sticky top-[73px] bg-background/90 backdrop-blur-md z-30">
+<div class="flex gap-sm overflow-x-auto pb-xs scrollbar-hide no-scrollbar">
+<button class="category-btn whitespace-nowrap px-md py-xs rounded-full bg-primary text-on-primary font-label-md shadow-sm transition-all scale-100 active:scale-95" data-category="all" onclick="filterItems('all')">All Items</button>
+<button class="category-btn whitespace-nowrap px-md py-xs rounded-full bg-surface-container text-on-surface-variant font-label-md border border-outline-variant hover:bg-primary-fixed-dim transition-all" data-category="drinks" onclick="filterItems('drinks')">Beverages / Chai</button>
+<button class="category-btn whitespace-nowrap px-md py-xs rounded-full bg-surface-container text-on-surface-variant font-label-md border border-outline-variant hover:bg-primary-fixed-dim transition-all" data-category="icecream" onclick="filterItems('icecream')">Ice Cream</button>
+<button class="category-btn whitespace-nowrap px-md py-xs rounded-full bg-surface-container text-on-surface-variant font-label-md border border-outline-variant hover:bg-primary-fixed-dim transition-all" data-category="meals" onclick="filterItems('meals')">Thali / Plates</button>
+</div>
+</div>
+<!-- Catalog Grid -->
+<section class="px-margin-mobile md:px-margin-desktop pb-xl pt-sm">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter" id="catalog-grid">
+<!-- Item 1: Filter Coffee -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="drinks">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC460kqterhtfdmiohWCLBXVo39zfRPnE06Pg1QYO8LE5kyz2DYNNySxwpuqofiDXlC3mO7q5GqRMzY-nCUiEe3BVxh_Tcddez7XkZnOxJ8wvnDauBq868STx0kHNB9poaVV4_xQ_xWIzShpSGWJxeHcQWNIwHQPE4joeAeHQBnIlUxfA3rZRSsmYuA87AO8-xIqSoKEdMtlv6isW4lVndXh1-Z55SvzpZeJwPs9aqsFxkq30ndsEPjCuTY_5kMrbZBIPWo36yxAgiM"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹250</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Filter Coffee / Latte</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">South Indian filter coffee with steamed silky milk and hand-poured art.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 2: Vanilla Bean Ice Cream -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="icecream">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU9-noOH6NiWbayA7PB59j3Tk2aO81P-EwUEonqLqfBCWJjNo0YGvk-bcxBkqCHXJisbjSdab1zJ998INlzaVwHGT0ob44uGGGIJPumGiekCawwPjcvi8HO4Qbq-b_Ir-svk6D0CUbUf8hBb4UTGhAgDuaN_DcNBEkgKmUwK0VLWxZrq_CMkEA_Fd-4gzUUWRZ2mGP6pq-4X47Apd-QZvSj9BGy5_LYAkwGcdJ1pWQvvqfOYOqWl8AX81IswFgbrCNF719dRe0Umbu"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹350</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Vanilla Bean</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Hand-churned with Madagascar vanilla beans and local dairy.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 3: Signature Pasta -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="meals">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9H75oGgioyqPYMR6CFD_ZIhhh8l1O1o7ApcAr_HUuFL3IUIjs4lSHn8jZGan97tc535j_elzdyu7T-x-6GUdHRwQoedGI22jplpyIovIddqCa5dNencGeNXEL6vwvu-MGJqjE7wo0scmJImEDBz4DECC_j_18Fe5EbsvfDvBH51G0WnNqnJboowXu9F26xEjlx2C5RHhhQ6_PZlMd1gFP5oleKy1zgxlYS-WBNK1v9sk5JWt1O9ZeuYN5t-bcjAur1bztYJ-zkQID"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹850</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Truffle Pappardelle</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Fresh handmade pasta with wild forest mushrooms and black truffle oil.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 4: Green Detox Juice -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="drinks">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt0BgmCZIFnhZoAgJRaxCMySpPt2-CKELI0eFMOTpsicueBzdQM5jpZhPYBAQoAJHtCv8HpKcl736kx44mvLq5wUXMa5XYoFM4g5OfRVa2ynD96ahHgbinKgB9CQAcxVhgx1bu0qRlyClPwKI7fK3G4_n1xOCrv6RnpxgjJCbPa_12QHV5aIp69_2hjWGAQo-GDFxiDyaZQvMnpFw4ClBHPzEglrBPJNHpxmiyFDS071NdCnPM7zMMRsnYoIVdzvjvjujadJSVNd60"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹380</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Verde Revive</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Kale, green apple, cucumber, and a hint of fresh organic ginger.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 5: Dark Cacao -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="icecream">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUy49tkWXe_xy9NTzfsi6dPFpBoj8-_hD2eRXRuePXI6lXEbBiGGwNQTTguXVbDDuaZ1dM6b9X_YdASaIIfw2-4jE8VZ8ifgCDxerV7fq2yqpKLkNTNfed-SpCuppveDJGdi9E9ogdOk0zvQNwX9LxYJJsHYSXfLCyZtVVisXz26ijYEv0zk35rf0Aq7TUlW5yNMNrCvwNgDNN-XxCGjNub5a97S7bAhvecROBrLL4F825r7RP-67DEAVCRTdDe7MsxpjQGtSFABY_"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹450</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Dark Cacao</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">70% Peruvian dark chocolate with house-made sea salt fudge.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 6: Wagyu Burger -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="meals">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDe2aP4_sIhjJ6PAosX7DcU9OHjmUaLq1GAKpPQOkErP3iSlnlS0CJKM6VmOqmnhEfuao04Xv-FTD8Kso3CAXbJGD6luzw67ixPe3trR3j8fkNkEaRie5dxRuEXIVZ6JS1i8bvyMdgNm3vsWn5KBnOpM7HeOunV02CeYj8tXK5v41LRf55SE-bRkMpNFq3ig6vrbIlHU8OLSbItCLYqxo7IpZ7T7JzK3abSDNAMbW2EBcFmPKv_jSwJUgiav4lDOvRLcTXddHLjXvH"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹950</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Artisan Lamb Burger</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Juicy lamb patty, aged cheddar, and balsamic onion jam on brioche.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 7: Hibiscus Iced Tea -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="drinks">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgJ--IcezNyArZqTzwmrDnIijVIl8d_9jiuKj5eme5_6MEjxsnEPMHa_XG6HCLp0x2zHNEPRaqcpNGVX-tDys9tJDMHeHRcxxSuCbNOwIH2km1uwmXiNCySRcn0xzW6w0C5fS7RdGf1sYq2QcBaPiaK21jed1UMBBk_85xjoCQElKx88pPiz9qfKch6hfR13Qmu5mn3BYfSjwpltHXrBkfqckJjYxyC1fkRP_tRCf64zoHnEk88ArVTefzWYyxl3DIdyfH5cP78uJ6"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹320</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Hibiscus Cooler</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Refreshing cold-brewed hibiscus flowers with mint and citrus.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 8: Creamy Paneer Salad -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="meals">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbkGP8YmjhPfaZPo8ppaC7WMY6kKVD-U-FYY742hoffYmh0GZG42h7ESZ_V9sBBua10xSdcZT9A2uNVLfEhLu5P7mDSY3c7e7nnBCCHxaWF-EubwkD0dO5Ghwg8h1GTtfJTW5jk_T-zEimKlhk_pl0b6f3S_m3IQavqOfANIdnp1FATPQm-1-X8EajWWe24_1UedAh_1Vx70syaxzGxZOcWkQFT61NfmKITzeWHbIGsUgBzgks0BHbpuQgCAFtqsr_6Mj6xU0n_2hw"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹750</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Creamy Paneer Salad</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Fresh artisan paneer, heritage tomatoes, wild basil pesto, and balsamic glaze.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 9: Strawberry Sorbet -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="icecream">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNbxc2SoOMnUiO5h9R_6aW7uoBAxYHnbKnaEdh1NfCkVvp0nxUJQ2LPeLV2ZpBMoqgRUFWUYnzuyeQSFbJqIq2bMFoQi8bYKkeVrjuREmL6r9w3qleo4sNcGrjl26nt_SlUdZwfBd4NWh4P7TTMCsJD_ckjJ96Qtb6hTYW0XiDGekMLrJBBJn9bKViRvg26PzCB9DkPZZfFQ3jjj1sTHQ0T6panRo9SAUF7NDKP9Qx8QsS0yIGvgVrgdSzNjVHvNjCv5F0dZGaa1i5"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹380</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Summer Berry Sorbet</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Dairy-free sorbet made with seasonal organic strawberries and lime.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 10: Harvest Bowl -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="meals">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr2-IOa4u9cIPgkEPC4qMcyvDXAMYy3U-KnLX8Fmsq1mZsBK-Gq9ViMtz0YAml65fErTNU-M4Q3Ea0CjFgECDMF_pAIk29ijTykz_R0yl-H1TITq_WHzTKb3YLBLgL9RNbGy998nRqzJ7rvZ7TFKo0_4BbP721beYRTPl1VVQdANngetJ_P2T2IKOgIYgpVd7tHB6QCSjXgHviKciX10YSqiDr8dU0JbgVEuZ3aMRFU-4jOSUUyNgK7p04D2Zp2Jj4PvAKpA76e5sB"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹680</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Healthy Harvest Plate</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Quinoa, charred greens, miso avocado, and house-made dressing.</p>
+</div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Order
+                    </button>
+</div>
+</div>
+<!-- Item 11: Classic Earl Grey -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="drinks">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 duration-500 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlJWTicpAsDNZlKuvZeKYy-gvfLTfB6oWtjw-Ibo8KoHGwXQrntUgkOGQku29DfuMIGQEPgkXBQdgEZ6Y-tRtgnmfpB-ay3SmjQd2J0uzZIcRKyILVpwDqQQ6jpwk43bcIVBdA63ft37-LSzNBIhXsdyOiAQhES0CW-CDfYHxEhRumROwXhz9eq_rpEKjg_ZHLyJRgxNlHhz-lYr1mMkforeXiTW3d5dmQbxrR74fqRh1JD_rgGtoZqqrX4e0cQTKq3zhqIkhrcxmn"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹220</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Special Masala Chai</h3><p class="font-body-md text-body-md text-on-surface-variant">Organic black tea infused with premium spices and bergamot.</p></div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">Order</button>
+</div>
+</div>
+<!-- Item 12: Mango Passion -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="icecream">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 duration-500 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeMVdW80-utau4y4yTjsu8UBRCYuCRmWL5wyVQgAi5fvZbFB5hiicrE-BITWZA-CbznRooietrvj4_Nqyns7Ia75OSXqRcipnRe1dlo6MuOPpYCZEFIiuSrBLtEcLT61j4S1y5q6AA417qNlIlrz5jiwm1BedzavN_CVi6S6-l3Bw8Vqswtm8cFiCT6whmcASmLLuGTxDPGvj-XeUwWZpxNyHkMpt47cMq7h4lipe9UENkHMWIFs7HyR6kH2HQ8dWd7jUDDINdWpJ6"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹380</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Alphonso Mango Swirl</h3><p class="font-body-md text-body-md text-on-surface-variant">Tropical mango swirl with a hint of passionfruit acidity.</p></div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">Order</button>
+</div>
+</div>
+<!-- Item 13: Summer Field -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="meals">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 duration-500 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJyauGmOmTWvBgFoB4GdppGHAxZ1j5gsqBT-HfftmnaGeILF18Wc1tvEHRvhFEbBWidDitaZH4DxgU7LvCdXGvsdj7sCsJRmVyJjkT6HvlXX31W9tHnu1zhDaVoasZLMkxPv3o6s80MxeBWiQK5I9IIJ9kKa7ZNA1IWxgpbYXWhF83aC2finw8hEJnz_7l3hdN0kTsToY_x949p8Zy5zuL_sR6XZCiaS7dydeQMatfANbYgh9i41lgsjSYFTlHL-xQjgo4uL72GxJa"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹650</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Nutty Paneer Plate</h3><p class="font-body-md text-body-md text-on-surface-variant">Baby spinach, candied walnuts, and artisan goat cheese paneer.</p></div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">Order</button>
+</div>
+</div>
+<!-- Item 14: Morning Citrus -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="drinks">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 duration-500 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCldYr8qdQLSyyye6i4B5rtI7d-63ceYqCD-K4Fts7WNtkHYUR5_WUqLRpCwP8udDieoWaQlrAxwpdXY5i_8qmS-qOr3FO8oQxcpFDAOZlZaoTvT2vD1r9m6Ugkl2eoi_ZtJc73-CIR2sKuwVniZ10YWlSlK_OS2FYcm11j39yabdebyFy0gRdeB_m8iRJVvDLAvnkCPqr-RluY6FUar-R-BOQF0zpmSj4mk37wYy-W72BFOBUvAY0auOSWLXO0UV2AlGh7NIWK5Z27"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹280</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Fresh Nagpur Orange</h3><p class="font-body-md text-body-md text-on-surface-variant">100% fresh cold-pressed Nagpur oranges.</p></div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">Order</button>
+</div>
+</div>
+<!-- Item 15: Roasted Pistachio -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="icecream">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 duration-500 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAia3vY0yjyrC5BIMdqIF_svN36cCL-_Xe60E7ttr0Fsr8gpeZWrzkapImRk-QJWAmXpTgP3s1aZmsmL0fk3nLugF7OhQLAcYBZtkBMy7MWo2eeg8n0wGMm93dBPzFE2klFsgc3hZbvdzUERiMinuOzFPQEIQX90yKkdBZHDFobhUf6jgIqW_NO6BgA-Ggo8OtoUM79OdwHiK11BKmezHXRXLAHiUhx9gweNUiXgmXVxMH2yudEVvRfrH8Z-YJUTJXHsq4DC06NVQpN"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹450</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Roasted Pistachio</h3><p class="font-body-md text-body-md text-on-surface-variant">Slow-roasted Bronte pistachios churned into silk.</p></div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">Order</button>
+</div>
+</div>
+<!-- Item 16: Rosemary Roast -->
+<div class="product-card group bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col" data-category="meals">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 duration-500 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo4Xe7yPN0QAcEU-zYQZkJJuAHkL7UL5kuyVQYgAEuTZWlfhPVBWpVkWONpLhqKo1re-u7HJKbzCfvAJi49oetOURh4d2W1JzgPKWjzNznuFSi79IBxxmAAaPnC330hw7ctaMNdFcx2Rdj9TW1dn_8bDNsCNzNf0FTQIdQbfpHUU7BnE_MzSDYXGp9Q6pJIIUwaPWdNGzG77eeN9A9B6T0YCEAjto40e6T4fpLtmMjtyuKWDd3p4VZO-khwVK--_VdVtiGeWvPGcRh"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm shadow-sm">₹890</div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div><h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Rosemary Roast Plate</h3><p class="font-body-md text-body-md text-on-surface-variant">Organic free-range chicken with seasonal harvest vegetables.</p></div>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-xs">Order</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 md:hidden flex justify-around items-center px-4 py-2 pb-safe bg-surface-container dark:bg-surface-container-high shadow-lg rounded-t-xl transition-all">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-sm text-label-sm">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary-fixed-dim transition-all rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary-fixed-dim transition-all rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+    function filterItems(category) {
+        const cards = document.querySelectorAll('.product-card');
+        const btns = document.querySelectorAll('.category-btn');
+        
+        // Update button styles
+        btns.forEach(btn => {
+            if(btn.dataset.category === category) {
+                btn.classList.remove('bg-surface-container', 'text-on-surface-variant', 'border-outline-variant');
+                btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+            } else {
+                btn.classList.add('bg-surface-container', 'text-on-surface-variant', 'border-outline-variant');
+                btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            }
+        });
+
+        // Filter logic with animation
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            }, 300);
+        });
+    }
+
+    // Add subtle interaction feedback
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.style.opacity = '0.7';
+            setTimeout(() => btn.style.opacity = '1', 100);
+        });
+    });
+
+    async function placeOrder(itemName, price) {
+        const token = localStorage.getItem('token');
+        if (!token) return alert('Please login first');
+
+        try {
+            const res = await fetch('http://localhost:5000/api/orders', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ item_name: itemName, price: price })
+            });
+            const data = await res.json();
+            if (res.ok) alert('Order placed! Confirmation email sent.');
+            else alert(data.error);
+        } catch (err) {
+            console.error('Error placing order:', err);
+        }
+    }
+
+    // Attach to buttons
+    document.querySelectorAll('.product-card button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const card = e.target.closest('.product-card');
+            if (card) {
+                const itemName = card.querySelector('h3').innerText;
+                const price = parseInt(card.querySelector('.absolute').innerText.replace('₹', ''));
+                placeOrder(itemName, price);
+            }
+        });
+    });
+
+    // Logout functionality
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            window.location.href = '../login/code.html';
+        });
+    }
+</script>
+</body></html>

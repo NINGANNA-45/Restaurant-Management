@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artisan Table</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdbd1",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ede1c9",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#d1c5ae",
+                    "on-tertiary-container": "#fffbff",
+                    "outline": "#89726c",
+                    "on-background": "#1b1c1a",
+                    "on-primary-fixed": "#3b0900",
+                    "primary": "#994127",
+                    "inverse-on-surface": "#f2f0ed",
+                    "on-surface-variant": "#56423d",
+                    "surface-tint": "#9c4329",
+                    "surface-variant": "#e4e2de",
+                    "secondary-fixed": "#ccead6",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "inverse-primary": "#ffb5a0",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#dcc1ba",
+                    "background": "#fbf9f5",
+                    "on-error-container": "#93000a",
+                    "surface": "#fbf9f5",
+                    "tertiary-container": "#7d7460",
+                    "secondary-fixed-dim": "#b0cdbb",
+                    "secondary": "#496455",
+                    "surface-container": "#efeeea",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#7d2c14",
+                    "surface-container-highest": "#e4e2de",
+                    "surface-container-high": "#eae8e4",
+                    "on-surface": "#1b1c1a",
+                    "on-secondary-fixed": "#062014",
+                    "secondary-container": "#ccead6",
+                    "on-secondary-fixed-variant": "#324c3e",
+                    "primary-container": "#b8583d",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#30312e",
+                    "surface-dim": "#dbdad6",
+                    "on-secondary-container": "#4f6a5b",
+                    "tertiary": "#635b48",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#fffbff",
+                    "on-tertiary-fixed-variant": "#4d4634",
+                    "surface-bright": "#fbf9f5",
+                    "surface-container-low": "#f5f3ef",
+                    "on-tertiary-fixed": "#211b0c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "margin-desktop": "48px",
+                    "sm": "12px",
+                    "lg": "40px",
+                    "base": "8px",
+                    "xl": "64px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Newsreader"],
+                    "label-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "display-lg": ["Newsreader"],
+                    "headline-md": ["Newsreader"],
+                    "headline-lg-mobile": ["Newsreader"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #1b1c1a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDc4LesgwtZ8GjJm4X3vJ_YE0DOCru6N2P5PpKzUtiv2t8kzhQWD4Cp5p7iNGORKl88B6Z4ksmwjMZ37c7cLYYNYXuJlEDNZJe7n7X1xXBhYfaxnXuctA1XBsUWszMPc-kJQZvMTSN86W8xQzlNRagGxJAnG57qHg4OYbI6hfTV7F-QEQU87IhB0dM2kk7N2G72zZXZGtKUHOtCwT1TJEf82jwdKGxbe4TFKhD7V1wxTPTNDnsCd5vvW480VgdCWdrnFqfmn1a403-');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.6);
+            z-index: -1;
+            transform: scale(1.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(251, 249, 245, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(220, 193, 186, 0.3);
+        }
+        .input-focus-effect:focus-within {
+            border-color: #994127;
+            box-shadow: 0 0 0 1px #994127;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface p-margin-mobile md:p-0">
+<div class="bg-image"></div>
+<!-- Top Branding -->
+<div class="fixed top-0 left-0 w-full p-md flex items-center justify-center z-20">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-white text-headline-md drop-shadow-md" data-icon="restaurant">restaurant</span>
+<span class="font-headline-lg text-white tracking-tight drop-shadow-md">Artisan Table</span>
+</div>
+</div>
+<main class="w-full max-w-[460px] z-10 my-xl">
+<!-- Main Login Card -->
+<div class="glass-card rounded-xl p-md md:p-lg animate-in fade-in zoom-in-95 duration-700">
+<!-- Greeting Header -->
+<div class="text-center mb-lg">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-fixed mb-md">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">skillet</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-on-surface mb-xs">Namaste!</h1>
+<p class="text-on-surface-variant font-body-md px-md">Welcome back to your Restaurant. Ready for today?</p>
+</div>
+<!-- Login Form -->
+<form class="space-y-md" id="loginForm" onsubmit="return false">
+<!-- Full Name Field -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-wider" for="fullname">Full Name</label>
+<div class="relative flex items-center transition-all duration-200 bg-surface-bright/50 border border-outline-variant rounded-lg px-md py-sm input-focus-effect">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm" data-icon="person">person</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline/50 font-body-md" id="fullname" name="fullname" placeholder="Ninganna" required="" type="text"/>
+</div>
+</div>
+<!-- Phone Number Field -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-wider" for="phone">Phone Number</label>
+<div class="relative flex items-center transition-all duration-200 bg-surface-bright/50 border border-outline-variant rounded-lg px-md py-sm input-focus-effect">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm" data-icon="call">call</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline/50 font-body-md" id="phone" name="phone" placeholder="+91 98765 43210" required="" type="tel"/>
+</div>
+</div>
+<!-- Email Field -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-wider" for="email">Email</label>
+<div class="relative flex items-center transition-all duration-200 bg-surface-bright/50 border border-outline-variant rounded-lg px-md py-sm input-focus-effect">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm" data-icon="mail">mail</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline/50 font-body-md" id="email" name="email" placeholder="chef@artisantable.in" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-wider" for="password">Password</label>
+<a class="font-label-sm text-primary hover:text-primary-container transition-colors underline underline-offset-4 decoration-primary/30" href="#">Forgot?</a>
+</div>
+<div class="relative flex items-center transition-all duration-200 bg-surface-bright/50 border border-outline-variant rounded-lg px-md py-sm input-focus-effect">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm" data-icon="lock">lock</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-outline/50 font-body-md" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="text-on-surface-variant hover:text-primary transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center gap-sm pt-xs">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary focus:ring-offset-surface-container-low" id="remember" type="checkbox"/>
+<label class="font-label-md text-on-surface-variant cursor-pointer select-none" for="remember">Keep me signed in </label>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary text-on-primary font-label-md py-md rounded-lg shadow-md hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-sm mt-lg" type="submit">
+<span>Start </span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Secondary Action -->
+<div class="mt-xl text-center border-t border-outline-variant pt-md">
+<p class="font-label-md text-on-surface-variant">
+<a class="text-secondary font-bold hover:underline underline-offset-4 ml-xs" href="../register/code.html">Register </a>
+</p>
+</div>
+</div>
+<!-- Atmospheric Footer -->
+<div class="mt-md flex justify-center gap-lg text-white opacity-80 drop-shadow-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm">Secure Entry</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="support_agent">support_agent</span>
+<span class="font-label-sm">Staff Support</span>
+</div>
+</div>
+</main>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const fullname = document.getElementById('fullname').value; // if using for registration
+        
+        try {
+            const res = await fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            
+            if (res.ok) {
+                localStorage.setItem('token', data.token);
+                alert("Namaste! Successfully authenticated.");
+                window.location.href = '/menu/code.html';
+            } else {
+                alert(data.error);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+</script>
+</body></html>

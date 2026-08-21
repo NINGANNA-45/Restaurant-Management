@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&amp;family=Newsreader:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .serif-headline {
+            font-family: 'Newsreader', serif;
+        }
+        .tonal-shadow {
+            box-shadow: 0 10px 30px -10px rgba(153, 65, 39, 0.12);
+        }
+        .order-card-transition {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .order-card-transition:active {
+            transform: scale(0.98);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#ffb5a0",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#30312e",
+                        "surface-tint": "#9c4329",
+                        "tertiary-container": "#7d7460",
+                        "on-primary-container": "#fffbff",
+                        "secondary": "#496455",
+                        "outline-variant": "#dcc1ba",
+                        "on-error-container": "#93000a",
+                        "surface": "#fbf9f5",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#b8583d",
+                        "secondary-container": "#ccead6",
+                        "on-secondary-container": "#4f6a5b",
+                        "surface-variant": "#e4e2de",
+                        "surface-container-high": "#eae8e4",
+                        "on-tertiary-fixed": "#211b0c",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f5f3ef",
+                        "outline": "#89726c",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f5",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-on-surface": "#f2f0ed",
+                        "on-tertiary-fixed-variant": "#4d4634",
+                        "on-secondary-fixed-variant": "#324c3e",
+                        "surface-container-highest": "#e4e2de",
+                        "secondary-fixed-dim": "#b0cdbb",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ccead6",
+                        "tertiary-fixed": "#ede1c9",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-fixed": "#062014",
+                        "on-primary-fixed": "#3b0900",
+                        "surface-dim": "#dbdad6",
+                        "on-surface-variant": "#56423d",
+                        "on-surface": "#1b1c1a",
+                        "background": "#fbf9f5",
+                        "surface-container": "#efeeea",
+                        "primary": "#994127",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "on-primary-fixed-variant": "#7d2c14",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#ffdbd1",
+                        "tertiary": "#635b48",
+                        "tertiary-fixed-dim": "#d1c5ae"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.8rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xl": "64px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "margin-desktop": "48px",
+                        "lg": "40px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Newsreader"],
+                        "headline-lg": ["Newsreader"],
+                        "label-sm": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Newsreader"],
+                        "label-md": ["Manrope"],
+                        "display-lg": ["Newsreader"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top AppBar - Desktop & Global Anchor -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-desktop py-md w-full sticky top-0 z-50">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="restaurant">restaurant</span>
+<h1 class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed-dim">Artisan Table</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-xl">
+<a class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" href="#">Menu</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary transition-colors font-label-md text-label-md" href="#">Orders</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" href="#">Logout</a>
+</nav>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary-container border-2 border-surface shadow-sm overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a person with a warm smile, set against a soft-focus studio background. The lighting is high-key and flattering, matching the premium hospitality aesthetic of the brand. The overall mood is welcoming and refined, using a clean light-mode palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWqZytwCzYqW_TW6QRfWbfWAWyomWkmjdbcjkg4ep3PUjZEqf9vZVjKYakOi_4agXV6FNXfysHYZH18lZlQL_e3Ckq1FC1mQCKKzri2eCH-aoobpbPEYFIHhgVqh9esmvHXs5TOHvMHRUBVsP7bTSQ0zGQTKE5UUVH98-d2AcfNzNLgoOqGf7CR5WMPlEvxTw3aA33sZm8J1LAQDiNJh4MN8psyYaJ1t2BhuBLlkdx-sNf_pnfoXQpsFfFICi85x838kpJ0bkCuIg9"/>
+</div>
+</div>
+</header>
+<main class="min-h-screen pb-32 md:pb-12">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop pt-12 pb-8">
+<div class="max-w-7xl mx-auto">
+<p class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-2">Past Experiences</p>
+<h2 class="font-headline-lg text-headline-lg md:text-display-lg font-headline-lg text-on-surface">Your Orders</h2>
+<div class="h-1 w-16 bg-primary mt-4 rounded-full"></div>
+</div>
+</section>
+<!-- Orders Bento Grid -->
+<section class="px-margin-mobile md:px-margin-desktop">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Order Card 1: Large Featured History -->
+<div class="md:col-span-8 bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden tonal-shadow group order-card-transition cursor-pointer">
+<div class="flex flex-col md:flex-row h-full">
+<div class="md:w-1/2 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A gourmet Artisan Lamb Burger presented on a rustic ceramic plate. The burger features a juicy patty, melting artisanal cheese, and fresh microgreens, shot in a warm, cinematic light. The background is a blurred high-end restaurant interior with terracotta accents and natural wood textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3niygndGhT9zles2jkTyiIMxX3YuwRD5aCMsBZ5siNgz0vD5TrWDdaRRHKeDciSgjMyXGLyzXX-BSRwu4cgx-vPsxmqkb531j1Wj53WP4DkxNweVoPp5gA1v3bon0cCpXItRag_g7NCGBRTUmQAXIm3tvTBio5lRGPUce9eDrbU0SAxrm_mML2h-X_5RJYQUXYwCdnGGIoY4abVad6-yohATKKAOI_anUhTAaEnin6vDZFM6gSlh9aknL9s1-FJV5cvaEjLPOsw6s"/>
+<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-sm text-label-sm shadow-md">
+                                COMPLETED
+                            </div>
+</div>
+<div class="md:w-1/2 p-md flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Order #8492 • Today, 1:45 PM</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">Artisan Lamb Burger</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Premium grass-fed lamb, rosemary aioli, and caramelized onions on a brioche bun.</p>
+<div class="flex items-center gap-sm p-sm bg-surface rounded-lg border border-outline-variant/30 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-md">
+<span class="font-headline-md text-headline-md text-primary">₹845</span>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm">
+                                    Reorder
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Card 2: Medium Grid -->
+<div class="md:col-span-4 bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden tonal-shadow order-card-transition cursor-pointer group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A vibrant Creamy Paneer Salad in a minimalist white bowl. Features golden-seared paneer cubes, crisp organic greens, and a light herb dressing. The lighting is bright and natural, emphasizing the freshness of the ingredients in a refined, hospitality-focused setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKBDk5-08YQrKTBLha6-N31MogL6nmvSxmNJhTUf1ajQX1yyOzhtumZfyGndr3PnYMimNQHARt7dnehz52WtUqwcu71eOcOmjdHm1Eih5gLEPDvNy9PA9nTW5jfx2ukmrSL4hkKVL0LSmJ42ayccBosnmipnGTyKb__d-jW83RfBZThBTtiWIDYEPCcqMmHferv9EXkOTNiq20xRLX4-PP9Eolp6MKAod-QoXgGU5kKyl3LQ4pdZ3BY1hvADdwpImBMVjGaLFuBNbF"/>
+<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-sm text-label-sm shadow-md">
+                            COMPLETED
+                        </div>
+</div>
+<div class="p-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Order #8488 • Yesterday</span>
+<h3 class="font-headline-md text-headline-md mt-1 mb-2">Creamy Paneer Salad</h3>
+<div class="flex justify-between items-center mt-4">
+<span class="font-headline-md text-headline-md text-primary">₹595</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Order Card 3: Wide/Tall Grid -->
+<div class="md:col-span-4 bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden tonal-shadow order-card-transition cursor-pointer group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Traditional South Indian Filter Coffee served in a classic brass tumbler and davara. The coffee has a rich froth on top, positioned on a clean marble table. The background shows soft terracotta colors and warm lighting, creating an inviting, artisanal atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB52b_67yiH7WjZuzSIw5TjOz38LwtW7w5-OJuB1ziOTGoJho1ja0pMerWi3EvktUD-xKbi51xNU9V5no1xr7_MOeM16CVSdCD54esyUauDIClaR6XSg6xmq57C47NwguTReKbfRC2p3I4MUufiaqgzgKo3xsqr4caBtES7FROMsdXeVSuAJlJkUO6SO8YoQsNHXyfXlSNo7lOydMnsa9eXaFQ2sbK38APD3-Y_XepHz5nX9VyFZPM3wesVL04i3G_h3wLp_D25dtS8"/>
+</div>
+<div class="p-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Order #8472 • 2 Days Ago</span>
+<h3 class="font-headline-md text-headline-md mt-1 mb-2">Filter Coffee</h3>
+<div class="flex justify-between items-center mt-4">
+<span class="font-headline-md text-headline-md text-primary">₹185</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Order Card 4: Detailed Summary -->
+<div class="bg-primary-container/10 p-lg rounded-full">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'wght' 200;">receipt_long</span>
+</div>
+
+</div>
+</section>
+</main>
+<!-- Navigation Drawer (Desktop Sidebar Hidden for this mobile-first but responsive design, using TopAppBar logic as defined in hierarchy) -->
+<!-- Bottom Navigation Bar - Mobile Only -->
+<nav class="fixed bottom-0 left-0 w-full z-50 md:hidden flex justify-around items-center px-4 py-2 pb-safe bg-surface-container dark:bg-surface-container-high shadow-[0_-4px_12px_rgba(153,65,39,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-1" href="#">
+<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label-sm text-label-sm">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-1" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Micro-interaction script -->
+<script>
+        document.querySelectorAll('.order-card-transition').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+        async function fetchOrders() {
+    const token = localStorage.getItem('token');
+    if (!token) return window.location.href = '/login.html';
+
+    const res = await fetch('http://localhost:5000/api/orders', {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const orders = await res.json();
+    
+    // Logic to render 'orders' array into the DOM grid...
+    console.log(orders); 
+}
+fetchOrders();
+    </script>
+</body></html>
