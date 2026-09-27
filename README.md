@@ -151,6 +151,3 @@ backend/middleware/auth.js
 **Ninganna Pundalik Shirashyad**
 
 B.Tech Computer Science Engineering Student
-
-
-If you find this project useful, consider giving the repository a ⭐ on GitHub.
