@@ -258,7 +258,7 @@
     const token = localStorage.getItem('token');
     if (!token) return window.location.href = '/login.html';
 
-    const res = await fetch('http://localhost:5000/api/orders', {
+    const res = await fetch('/api/orders', {
         headers: { 'Authorization': `Bearer ${token}` }
     });
     const orders = await res.json();
