@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
+
 const path = require('path');
 
 let db;
@@ -86,6 +86,7 @@ if (process.env.TURSO_DATABASE_URL && process.env.TURSO_AUTH_TOKEN) {
 
 } else {
     // Local development database
+    const sqlite3 = require('sqlite3').verbose();
     const dbPath = path.resolve(__dirname, 'artisan_table.db');
 
     db = new sqlite3.Database(dbPath, (err) => {
